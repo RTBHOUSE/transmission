@@ -3241,12 +3241,7 @@ static void rechokeUploads(tr_swarm* s, uint64_t const now)
 
         struct peer_atom* atom = peer->atom;
 
-        if (tr_peerIsSeed(peer))
-        {
-            /* choke seeds and partial seeds */
-            tr_peerMsgsSetChoke(PEER_MSGS(peer), true);
-        }
-        else if (chokeAll)
+        if (chokeAll)
         {
             /* choke everyone if we're not uploading */
             tr_peerMsgsSetChoke(PEER_MSGS(peer), true);
