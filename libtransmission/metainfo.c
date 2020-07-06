@@ -96,7 +96,7 @@ char* tr_metainfo_sanitize_path_component(char const* str, size_t len, bool* is_
     *is_adjusted = false;
 
     /* https://docs.microsoft.com/en-us/windows/desktop/FileIO/naming-a-file */
-    char const* const reserved_chars = "<>:\"/\\|?*";
+    char const* const reserved_chars = "<>:\"\\|?*";
     char const* const reserved_names[] =
     {
         "CON", "PRN", "AUX", "NUL",
