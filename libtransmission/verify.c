@@ -25,11 +25,6 @@
 ****
 ***/
 
-enum
-{
-    MSEC_TO_SLEEP_PER_SECOND_DURING_VERIFY = 100
-};
-
 static bool verifyTorrent(tr_torrent* tor, bool* stopFlag)
 {
     time_t end;
@@ -119,14 +114,6 @@ static bool verifyTorrent(tr_torrent* tor, bool* stopFlag)
             tr_torrentSetPieceChecked(tor, pieceIndex);
             now = tr_time();
             tor->anyDate = now;
-
-            /* sleeping even just a few msec per second goes a long
-             * way towards reducing IO load... */
-            if (lastSleptAt != now)
-            {
-                lastSleptAt = now;
-                tr_wait_msec(MSEC_TO_SLEEP_PER_SECOND_DURING_VERIFY);
-            }
 
             sha = tr_sha1_init();
             pieceIndex++;
